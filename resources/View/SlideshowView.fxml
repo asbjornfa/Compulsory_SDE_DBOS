@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1D1D1D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1D1D1D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.SlideshowViewController">
    <bottom>
       <AnchorPane prefHeight="174.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="46.0" prefWidth="306.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Currently displaying:" textFill="WHITE">
+                        <Label fx:id="currentlyLbl" text="Currently displaying:" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
@@ -33,7 +33,7 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="29.0" prefWidth="156.0">
                            <children>
-                              <Label text="Red:" textFill="WHITE">
+                              <Label fx:id="redLbl" text="Red:" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -41,7 +41,7 @@
                                     <Font name="Charter Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label text="Green:" textFill="WHITE">
+                              <Label fx:id="greenLbl" text="Green:" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="50.0" right="50.0" />
                                  </HBox.margin>
@@ -49,7 +49,7 @@
                                     <Font name="Charter Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label text="Blue:" textFill="WHITE">
+                              <Label fx:id="blueLbl" text="Blue:" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -66,7 +66,7 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="84.0" prefWidth="333.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: White; -fx-background-radius: 50px;" text="←">
+                        <Button fx:id="leftSkipBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: White; -fx-background-radius: 50px;" text="←">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -74,7 +74,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: White; -fx-background-radius: 50px;" text="▶">
+                        <Button fx:id="playPauseBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: White; -fx-background-radius: 50px;" text="▶">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -82,7 +82,7 @@
                               <Font size="37.0" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-background-radius: 50px;" text="→">
+                        <Button fx:id="rightSkipBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-background-radius: 50px;" text="→">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -94,12 +94,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="84.0" prefWidth="263.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Load images" textFill="WHITE">
+                        <Button fx:id="loadImagesBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Load images" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Clear" textFill="WHITE">
+                        <Button fx:id="clearBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Clear" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -123,9 +123,9 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="Menu  ▼">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Slideshow" />
+                          <MenuItem fx:id="menuSlideshow" mnemonicParsing="false" onAction="#onClickMenuSlideshow" text="Slideshow" />
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem mnemonicParsing="false" text="Images" />
+                              <MenuItem fx:id="menuImages" mnemonicParsing="false" onAction="#onClickMenuImages" text="Images" />
                         </items>
                       </Menu>
                     </menus>
@@ -139,9 +139,9 @@
          <children>
             <HBox alignment="CENTER" layoutX="171.0" layoutY="37.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="37.0">
                <children>
-                  <ImageView fitHeight="291.0" fitWidth="506.0" pickOnBounds="true">
+                  <ImageView fx:id="imageView" fitHeight="291.0" fitWidth="506.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../../../../../Downloads/nature-3082832_640.jpg" />
+                        <Image url="@../Images/nature.jpg" />
                      </image>
                   </ImageView>
                </children>
