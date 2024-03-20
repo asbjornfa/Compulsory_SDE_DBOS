@@ -104,7 +104,6 @@ public class SlideshowViewController implements Initializable {
     }
 
 
-
     @FXML
     public void onClickMenuSlideshow(ActionEvent event) {
 

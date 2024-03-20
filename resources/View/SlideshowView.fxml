@@ -137,9 +137,9 @@
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" layoutX="171.0" layoutY="37.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="37.0">
+            <HBox alignment="CENTER" layoutX="152.0" layoutY="29.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="291.0" fitWidth="506.0" pickOnBounds="true">
+                  <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="600.0" pickOnBounds="true">
                      <image>
                         <Image url="@../Images/nature.jpg" />
                      </image>
