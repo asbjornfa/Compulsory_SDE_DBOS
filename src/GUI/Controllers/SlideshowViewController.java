@@ -11,6 +11,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SlideshowViewController implements Initializable {
+
+    public BorderPane slideshowBorderPane;
 
     private ImagesViewController imagesViewController;
 
@@ -75,19 +79,27 @@ public class SlideshowViewController implements Initializable {
     @FXML
     public void onClickMenuImages(ActionEvent event) throws IOException {
 
+        // Get the current stage
+        Stage currentStage = (Stage) slideshowBorderPane.getScene().getWindow();
+        // Get its dimensions
+        double width = currentStage.getWidth();
+        double height = currentStage.getHeight();
+
+        // Close the current stage
+        currentStage.close();
+
+        // Load the new scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ImagesView.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root, width, height)); // Set width and height for the new stage
         stage.setTitle("Image Viewer");
         stage.show();
 
-        // Get the controller for the AddMovieView.fxml
+        // Get the controller for the ImagesView.fxml
         ImagesViewController imagesViewController = loader.getController();
-        // Pass the reference to the main controller to allow communication between controllers
+        // Pass the reference to the slideshow controller to allow communication between controllers
         imagesViewController.setSlideshowViewController(this);
-
-
 
     }
 
