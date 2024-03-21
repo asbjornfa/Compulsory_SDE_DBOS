@@ -1,5 +1,6 @@
 package DAL.DB;
 
+import BE.Image;
 import BE.Playlist;
 import DAL.IPlaylist;
 
@@ -24,7 +25,22 @@ public class PlaylistDAO_DB implements IPlaylist {
     }
 
     @Override
-    public Playlist deletePlaylist(Playlist playlist) {
+    public void deletePlaylist(Playlist playlist) {
+
+    }
+
+    @Override
+    public List<Image> getAllImagesFromPlaylist(int playlistId) {
         return null;
+    }
+
+    @Override
+    public void addImagesToPlaylist(Image image, Playlist playlist) {
+
+    }
+
+    @Override
+    public void deleteImagesFromPlaylist(Image image, Playlist playlist) {
+
     }
 }

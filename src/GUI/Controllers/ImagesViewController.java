@@ -88,4 +88,18 @@ public class ImagesViewController implements Initializable{
     }
 
 
+    public void onClickAddFilesBtn(ActionEvent event) throws IOException {
+        // Load the new scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddFilesView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root)); // Set width and height for the new stage
+        stage.setTitle("Image Viewer");
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void onClickDeleteBtn(ActionEvent event) {
+
+    }
 }

@@ -29,12 +29,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="65.0" prefWidth="286.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="addFilesBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Add files" textFill="WHITE">
+                  <Button fx:id="addFilesBtn" mnemonicParsing="false" onAction="#onClickAddFilesBtn" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Add files" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="deleteBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Delete" textFill="WHITE">
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#onClickDeleteBtn" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Delete" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -65,8 +65,8 @@
                      <children>
                         <TableView fx:id="tblView">
                           <columns>
-                            <TableColumn prefWidth="178.53744506835938" text="File name" />
-                            <TableColumn minWidth="0.0" prefWidth="171.96258544921875" text="File format" />
+                            <TableColumn fx:id="colName" prefWidth="178.53744506835938" text="File name" />
+                            <TableColumn fx:id="colFileFormat" minWidth="0.0" prefWidth="171.96258544921875" text="File format" />
                           </columns>
                            <HBox.margin>
                               <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

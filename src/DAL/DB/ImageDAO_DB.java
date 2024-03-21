@@ -24,7 +24,6 @@ public class ImageDAO_DB implements IImages {
     }
 
     @Override
-    public Image deleteImage(Image image) {
-        return null;
+    public void deleteImage(Image image) {
     }
 }

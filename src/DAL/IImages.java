@@ -10,6 +10,6 @@ public interface IImages {
 
     public Image createImage(Image image);
 
-    public Image deleteImage(Image image);
+    public void deleteImage(Image image);
 
 }
