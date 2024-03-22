@@ -19,7 +19,7 @@ public class ImageModel {
         imagesToBeViewed.addAll(imageManager.getAllImages());
     }
 
-    public ObservableList<Image> getImagesToBeViewed() {
+    public ObservableList<Image> getObservableImages() {
         return imagesToBeViewed;
     }
 

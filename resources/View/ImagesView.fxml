@@ -63,9 +63,9 @@
                   </HBox>
                   <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="tblView">
+                        <TableView fx:id="tblViewImages">
                           <columns>
-                            <TableColumn fx:id="colName" prefWidth="178.53744506835938" text="File name" />
+                            <TableColumn fx:id="colFileName" prefWidth="178.53744506835938" text="File name" />
                             <TableColumn fx:id="colFileFormat" minWidth="0.0" prefWidth="171.96258544921875" text="File format" />
                           </columns>
                            <HBox.margin>
