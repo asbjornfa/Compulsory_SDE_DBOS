@@ -1,5 +1,6 @@
 package GUI.Controllers;
 
+import BE.Images;
 import GUI.Model.ImageModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,9 +51,11 @@ public class ImagesViewController implements Initializable{
     private MenuItem menuSlideshow;
 
     @FXML
-    private TableView<BE.Image> tblViewImages;
+    private TableView<Images> tblViewImages;
 
+    private AddFilesViewController addFilesViewController;
     private SlideshowViewController slideshowViewController;
+    private ImageModel imageModel;
 
 
     // Setter for controller
@@ -61,6 +64,7 @@ public class ImagesViewController implements Initializable{
     }
 
     public ImagesViewController() {
+        imageModel = new ImageModel();
     }
 
     @Override
@@ -69,9 +73,20 @@ public class ImagesViewController implements Initializable{
         colFileName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         colFileFormat.setCellValueFactory(new PropertyValueFactory<>("fileFormat"));
 
+        // Set the table items from the observable list in the model
+        tblViewImages.setItems(imageModel.getObservableImages());
+
         //Midlertidig løsning for at vise billede i ImageView..
         Image image = new Image("/Images/nature.jpg");
         imageView.setImage(image);
+    }
+
+    public void updateImageTblView(){
+        tblViewImages.refresh();
+    }
+
+    public void addImagesToTblView(Images images) {
+        tblViewImages.getItems().add(images);
     }
 
     @FXML
@@ -94,8 +109,6 @@ public class ImagesViewController implements Initializable{
         stage.setTitle("Image Viewer");
         stage.show();
 
-        // Get the controller for the AddMovieView.fxml
-        SlideshowViewController slideshowViewController1 = loader.getController();
         // Pass the reference to the main controller to allow communication between controllers
         slideshowViewController.setImagesViewController(this);
     }
@@ -111,12 +124,21 @@ public class ImagesViewController implements Initializable{
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("Image Viewer");
+        stage.setTitle("Add files");
         stage.setResizable(false);
         stage.show();
+
+        // Get the controller instance after loading the FXML
+        AddFilesViewController addFilesViewController = loader.getController();
+        // Set the reference to ImagesViewController
+        addFilesViewController.setImagesViewController(this);
     }
 
     public void onClickDeleteBtn(ActionEvent event) {
+        Images selectedImage = tblViewImages.getSelectionModel().getSelectedItem();
 
+        if (selectedImage != null) {
+            imageModel.deleteImage(selectedImage);
+        }
     }
 }

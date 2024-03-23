@@ -1,15 +1,15 @@
 package DAL;
 
-import BE.Image;
+import BE.Images;
 
 import java.util.List;
 
 public interface IImages {
 
-    public List<Image> getAllImages();
+    public List<Images> getAllImages();
 
-    public Image createImage(Image image);
+    public Images createImage(Images images);
 
-    public void deleteImage(Image image);
+    public void deleteImage(Images images);
 
 }

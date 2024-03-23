@@ -1,6 +1,9 @@
 package GUI.Controllers;
 
+import BE.Images;
+import GUI.Model.ImageModel;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -8,13 +11,26 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class addFilesViewController {
+public class AddFilesViewController {
 
 
     public TextField txtFileName;
     public TextField txtFileFormat;
     public TextField txtFile;
     public AnchorPane addFilesAnchorPane;
+
+    private ImagesViewController imagesViewController;
+
+    private ImageModel imageModel;
+
+    public AddFilesViewController() {
+        imageModel = new ImageModel();
+    }
+
+    public void setImagesViewController(ImagesViewController imagesViewController){
+        this.imagesViewController = imagesViewController;
+    }
+
 
     public void onActionChoose(ActionEvent event) {
         Stage stage = new Stage();
@@ -48,21 +64,45 @@ public class addFilesViewController {
         }
     }
 
-
-
-
-
-
     public void onActionCancel(ActionEvent event) {
-        Stage stage = (Stage) addFilesAnchorPane.getScene().getWindow();
-        stage.close();
+        closeStage();
     }
+
 
     public void onActionSave(ActionEvent event) {
+        String fileName = txtFileName.getText();
+        String fileFormat = txtFileFormat.getText();
+        String filePath = txtFile.getText();
+
+        if (!fileName.isEmpty() && !fileFormat.isEmpty() && !filePath.isEmpty()) {
+            Images images = new Images(fileName, fileFormat, filePath);
+
+            imageModel.createImage(fileName, fileFormat, filePath);
 
 
+            if (imagesViewController!=null) {
+                imagesViewController.addImagesToTblView(images);
+                imagesViewController.updateImageTblView(); //Not working
+                
+            }
 
+        } else {
+            // Show an alert indicating that all fields are required
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Incomplete Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all the required fields.");
+            alert.showAndWait();
+        }
+
+        closeStage();
+
+    }
+
+
+    private void closeStage() {
         Stage stage = (Stage) addFilesAnchorPane.getScene().getWindow();
         stage.close();
     }
+
 }

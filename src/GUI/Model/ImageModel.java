@@ -1,13 +1,13 @@
 package GUI.Model;
 
-import BE.Image;
+import BE.Images;
 import BLL.ImageManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ImageModel {
 
-    private ObservableList<Image> imagesToBeViewed;
+    private ObservableList<Images> imagesToBeViewed;
 
     private ImageManager imageManager;
 
@@ -19,22 +19,22 @@ public class ImageModel {
         imagesToBeViewed.addAll(imageManager.getAllImages());
     }
 
-    public ObservableList<Image> getObservableImages() {
+    public ObservableList<Images> getObservableImages() {
         return imagesToBeViewed;
     }
 
-    public void createImage(String fileName, String fileFormat){
-        Image image = new Image(fileName,fileFormat);
+    public void createImage(String fileName, String fileFormat, String filePath){
+        Images images = new Images(fileName,fileFormat,filePath);
 
-        imageManager.createImage(image);
+        imageManager.createImage(images);
 
-        imagesToBeViewed.add(image);
+        imagesToBeViewed.add(images);
     }
 
-    public void deleteImage(Image image){
-        imageManager.deleteImage(image);
+    public void deleteImage(Images images){
+        imageManager.deleteImage(images);
 
-        imagesToBeViewed.remove(image);
+        imagesToBeViewed.remove(images);
     }
 
 }

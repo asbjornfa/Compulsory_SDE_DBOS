@@ -1,6 +1,6 @@
 package BLL;
 
-import BE.Image;
+import BE.Images;
 import DAL.DB.ImageDAO_DB;
 import DAL.IImages;
 
@@ -14,16 +14,16 @@ public class ImageManager {
         imageDAO = new ImageDAO_DB();
     }
 
-    public List<Image> getAllImages(){
+    public List<Images> getAllImages(){
         return imageDAO.getAllImages();
     }
 
-    public Image createImage(Image newImage){
-        return imageDAO.createImage(newImage);
+    public Images createImage(Images newImages){
+        return imageDAO.createImage(newImages);
     }
 
-    public void deleteImage(Image image){
-        imageDAO.deleteImage(image);
+    public void deleteImage(Images images){
+        imageDAO.deleteImage(images);
     }
 
 }

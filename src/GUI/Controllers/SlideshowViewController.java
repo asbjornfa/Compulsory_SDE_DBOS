@@ -96,7 +96,6 @@ public class SlideshowViewController implements Initializable {
         stage.setTitle("Image Viewer");
         stage.show();
 
-        // Get the controller for the ImagesView.fxml
         ImagesViewController imagesViewController = loader.getController();
         // Pass the reference to the slideshow controller to allow communication between controllers
         imagesViewController.setSlideshowViewController(this);

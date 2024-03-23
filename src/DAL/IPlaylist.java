@@ -1,8 +1,7 @@
 package DAL;
 
-import BE.Image;
+import BE.Images;
 import BE.Playlist;
-import BLL.PlaylistManager;
 
 import java.util.List;
 
@@ -14,9 +13,9 @@ public interface IPlaylist {
 
     public void deletePlaylist(Playlist playlist);
 
-    public List<Image> getAllImagesFromPlaylist(int playlistId);
+    public List<Images> getAllImagesFromPlaylist(int playlistId);
 
-    public void addImagesToPlaylist(Image image, Playlist playlist);
+    public void addImagesToPlaylist(Images images, Playlist playlist);
 
-    public void deleteImagesFromPlaylist(Image image, Playlist playlist);
+    public void deleteImagesFromPlaylist(Images images, Playlist playlist);
 }
