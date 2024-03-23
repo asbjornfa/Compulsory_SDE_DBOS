@@ -45,7 +45,8 @@ public class AddFilesViewController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null){
-            txtFile.setText((file.getName()));
+            txtFile.setText(("Data/Images/" + file.getName()));
+
             // Extracting file name without extension
             String fileName = file.getName();
             int lastDotIndex = fileName.lastIndexOf('.');
@@ -82,7 +83,7 @@ public class AddFilesViewController {
 
             if (imagesViewController!=null) {
                 imagesViewController.addImagesToTblView(images);
-                imagesViewController.updateImageTblView(); //Not working
+                imagesViewController.updateImageTblView();
                 
             }
 

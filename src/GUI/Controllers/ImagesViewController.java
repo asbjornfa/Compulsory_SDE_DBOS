@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.Images;
 import GUI.Model.ImageModel;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import javax.swing.event.ChangeListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -69,16 +72,30 @@ public class ImagesViewController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+         imagePlaceholder();
 
+        tblViewImages.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String filePath = newValue.getFilePath();
+                Image image = new Image(new File(filePath).toURI().toString());
+                imageView.setImage(image);
+            } else {
+                // If no row is selected, display the placeholder image
+                imagePlaceholder();
+            }
+        });
+        
         colFileName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         colFileFormat.setCellValueFactory(new PropertyValueFactory<>("fileFormat"));
 
         // Set the table items from the observable list in the model
         tblViewImages.setItems(imageModel.getObservableImages());
 
-        //Midlertidig løsning for at vise billede i ImageView..
-        Image image = new Image("/Images/nature.jpg");
-        imageView.setImage(image);
+    }
+
+    public void imagePlaceholder(){
+        Image placeholder = new Image("/Images/no-image-is-selected.jpg");
+        imageView.setImage(placeholder);
     }
 
     public void updateImageTblView(){
@@ -112,6 +129,7 @@ public class ImagesViewController implements Initializable{
         // Pass the reference to the main controller to allow communication between controllers
         slideshowViewController.setImagesViewController(this);
     }
+
 
 
     public void onClickMenuImages(ActionEvent event) {
