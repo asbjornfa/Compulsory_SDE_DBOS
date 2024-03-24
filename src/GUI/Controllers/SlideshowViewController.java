@@ -1,5 +1,6 @@
 package GUI.Controllers;
 
+import BE.Images;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,11 +16,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SlideshowViewController implements Initializable {
+
+    private List<Images> slideshowImages;
+    private int currentImageIndex = 0;
+    private Timer timer;
+    private boolean isPlaying = false;
 
     public BorderPane slideshowBorderPane;
 
@@ -71,9 +81,48 @@ public class SlideshowViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Midlertidig løsning for at vise billede i ImageView..
-        Image image = new Image("/Images/nature.jpg");
-        imageView.setImage(image);
+
+        imagePlaceholder();
+    }
+
+    public void imagePlaceholder(){
+        Image placeholder = new Image("/Images/no-image-is-selected.jpg");
+        imageView.setImage(placeholder);
+    }
+
+    public void loadImages(List<Images> images) {
+        slideshowImages = images;
+        showCurrentImage();
+        startSlideshow();
+    }
+
+    private void showCurrentImage() {
+        if (slideshowImages != null && !slideshowImages.isEmpty()) {
+            Image image = new Image(new File(slideshowImages.get(currentImageIndex).getFilePath()).toURI().toString());
+            imageView.setImage(image);
+        }
+    }
+
+    private void startSlideshow() {
+        if (timer != null) {
+            timer.cancel();
+        }
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (isPlaying) {
+                    nextImage();
+                }
+            }
+        }, 0, 10000); // Change image every 10 seconds
+    }
+
+    private void nextImage() {
+        if (slideshowImages != null && !slideshowImages.isEmpty()) {
+            currentImageIndex = (currentImageIndex + 1) % slideshowImages.size();
+            showCurrentImage();
+        }
     }
 
     @FXML
@@ -109,4 +158,25 @@ public class SlideshowViewController implements Initializable {
     }
 
 
+    public void onClickLeftSkipBtn(ActionEvent event) {
+        currentImageIndex = (currentImageIndex - 1 + slideshowImages.size()) % slideshowImages.size();
+        showCurrentImage();
+    }
+
+    public void onClickPlayPauseBtn(ActionEvent event) {
+
+        isPlaying = !isPlaying;
+        playPauseBtn.setText(isPlaying ? "⏸" : "▶");
+    }
+
+    public void onClickRightSkipBtn(ActionEvent event) {
+        nextImage();
+    }
+
+    public void onClickClearBtn(ActionEvent event) {
+        imagePlaceholder();
+    }
+
+    public void onClickLoadImagesBtn(ActionEvent event) {
+    }
 }

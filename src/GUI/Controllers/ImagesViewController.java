@@ -9,10 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,9 +21,10 @@ import javax.swing.event.ChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class ImagesViewController implements Initializable{
+public class ImagesViewController implements Initializable {
 
     @FXML
     public BorderPane imagesBorderPane;
@@ -54,7 +53,7 @@ public class ImagesViewController implements Initializable{
     private MenuItem menuSlideshow;
 
     @FXML
-    private TableView<Images> tblViewImages;
+    public TableView<Images> tblViewImages;
 
     private AddFilesViewController addFilesViewController;
     private SlideshowViewController slideshowViewController;
@@ -68,11 +67,14 @@ public class ImagesViewController implements Initializable{
 
     public ImagesViewController() {
         imageModel = new ImageModel();
+        imageModel.setImagesViewController(this);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-         imagePlaceholder();
+        imagePlaceholder();
+
+        tblViewImages.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         tblViewImages.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -84,7 +86,7 @@ public class ImagesViewController implements Initializable{
                 imagePlaceholder();
             }
         });
-        
+
         colFileName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         colFileFormat.setCellValueFactory(new PropertyValueFactory<>("fileFormat"));
 
@@ -93,12 +95,12 @@ public class ImagesViewController implements Initializable{
 
     }
 
-    public void imagePlaceholder(){
+    public void imagePlaceholder() {
         Image placeholder = new Image("/Images/no-image-is-selected.jpg");
         imageView.setImage(placeholder);
     }
 
-    public void updateImageTblView(){
+    public void updateImageTblView() {
         tblViewImages.refresh();
     }
 
@@ -131,7 +133,6 @@ public class ImagesViewController implements Initializable{
     }
 
 
-
     public void onClickMenuImages(ActionEvent event) {
     }
 
@@ -159,4 +160,26 @@ public class ImagesViewController implements Initializable{
             imageModel.deleteImage(selectedImage);
         }
     }
-}
+
+    public void onClickLoadImagesBtn(ActionEvent event) throws IOException {
+            List<Images> selectedImages = imageModel.getSelectedImages();
+            if (!selectedImages.isEmpty()) {
+                // Load the new scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/SlideshowView.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Image Slideshow");
+
+                // Get the controller and pass the selected images
+                SlideshowViewController controller = loader.getController();
+                controller.loadImages(selectedImages); // Assume this method exists in SlideshowViewController
+
+                // Show the new window
+                stage.show();
+
+                // Optionally, close the current window if you want
+                ((Stage) loadImagesBtn.getScene().getWindow()).close();
+            }
+        }
+    }
