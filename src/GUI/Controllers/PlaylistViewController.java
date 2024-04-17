@@ -301,6 +301,11 @@ import java.util.ResourceBundle;
                 ObservableList<Images> imagesInPlaylist = playlistModel.getImagesInPlaylistsToBeViewed(selectedPlaylist);
                 if (!imagesInPlaylist.isEmpty()) {
                     try {
+                        // Get the current stage
+                        Stage currentStage = (Stage) playlistBorderPane.getScene().getWindow();
+                        // Close the current stage
+                        currentStage.close();
+
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/SlideshowView.fxml"));
                         Parent root = loader.load();
                         Stage stage = new Stage();
@@ -333,4 +338,5 @@ import java.util.ResourceBundle;
             }
         }
     }
+
 

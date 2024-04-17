@@ -93,11 +93,6 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="84.0" prefWidth="263.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="loadImagesBtn" mnemonicParsing="false" onAction="#onClickLoadImagesBtn" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Load images" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </Button>
                         <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#onClickClearBtn" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Clear" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

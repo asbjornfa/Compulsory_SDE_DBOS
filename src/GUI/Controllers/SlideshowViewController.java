@@ -12,8 +12,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
+import javafx.scene.image.PixelReader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -59,9 +61,6 @@ public class SlideshowViewController implements Initializable {
     private Button leftSkipBtn;
 
     @FXML
-    private Button loadImagesBtn;
-
-    @FXML
     private MenuItem menuImages;
 
     @FXML
@@ -89,6 +88,10 @@ public class SlideshowViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         imagePlaceholder();
+        currentlyLbl.setText("");
+        redLbl.setText("");
+        greenLbl.setText("");
+        blueLbl.setText("");
     }
 
     public void imagePlaceholder(){
@@ -104,8 +107,49 @@ public class SlideshowViewController implements Initializable {
 
     private void showCurrentImage() {
         if (slideshowImages != null && !slideshowImages.isEmpty()) {
-            Image image = new Image(new File(slideshowImages.get(currentImageIndex).getFilePath()).toURI().toString());
+            Images currentImage = slideshowImages.get(currentImageIndex);
+            Image image = new Image(new File(currentImage.getFilePath()).toURI().toString());
             imageView.setImage(image);
+            currentlyLbl.setText("Currently displaying: "+ currentImage.getFileName()); // Set the filename to currentlyLbl
+            countPixels();
+        }
+    }
+
+    private void countPixels() {
+        if (slideshowImages != null && !slideshowImages.isEmpty()) {
+            Images currentImage = slideshowImages.get(currentImageIndex);
+            Image image = new Image(new File(currentImage.getFilePath()).toURI().toString());
+            PixelReader pixelReader = image.getPixelReader();
+            int redCount = 0;
+            int greenCount = 0;
+            int blueCount = 0;
+
+            int width = (int) image.getWidth();
+            int height = (int) image.getHeight();
+
+            // Iterate over each pixel
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    Color color = pixelReader.getColor(x, y);
+                    int red = (int) (color.getRed() * 255);
+                    int green = (int) (color.getGreen() * 255);
+                    int blue = (int) (color.getBlue() * 255);
+
+                    // Check if the color is predominantly red, green, or blue
+                    if (red > green && red > blue) {
+                        redCount++;
+                    } else if (green > red && green > blue) {
+                        greenCount++;
+                    } else if (blue > red && blue > green) {
+                        blueCount++;
+                    }
+                }
+            }
+
+            // Update the labels
+            redLbl.setText("Red Pixels: " + redCount);
+            greenLbl.setText("Green Pixels: " + greenCount);
+            blueLbl.setText("Blue Pixels: " + blueCount);
         }
     }
 
@@ -180,11 +224,13 @@ public class SlideshowViewController implements Initializable {
     }
 
     public void onClickClearBtn(ActionEvent event) {
+        currentlyLbl.setText("");
+        redLbl.setText("");
+        greenLbl.setText("");
+        blueLbl.setText("");
         imagePlaceholder();
     }
 
-    public void onClickLoadImagesBtn(ActionEvent event) {
-    }
 
     public void onClickMenuPlaylists(ActionEvent event) throws IOException {
         // Get the current stage
