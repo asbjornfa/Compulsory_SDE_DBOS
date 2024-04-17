@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
 import BE.Images;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -110,7 +111,10 @@ public class SlideshowViewController implements Initializable {
             Images currentImage = slideshowImages.get(currentImageIndex);
             Image image = new Image(new File(currentImage.getFilePath()).toURI().toString());
             imageView.setImage(image);
-            currentlyLbl.setText("Currently displaying: "+ currentImage.getFileName()); // Set the filename to currentlyLbl
+            // Update currentlyLbl on the JavaFX application thread
+            Platform.runLater(() -> {
+                currentlyLbl.setText("Currently displaying: " + currentImage.getFileName());
+            });
             countPixels();
         }
     }
