@@ -26,6 +26,7 @@ import java.util.TimerTask;
 
 public class SlideshowViewController implements Initializable {
 
+    public MenuItem menuPlaylists;
     private List<Images> slideshowImages;
     private int currentImageIndex = 0;
     private Timer timer;
@@ -34,14 +35,10 @@ public class SlideshowViewController implements Initializable {
     public BorderPane slideshowBorderPane;
 
     private ImagesViewController imagesViewController;
+    private PlaylistViewController playlistViewController;
 
     //Defines a Stage reference
     private Stage slideshowStage;
-
-    // Setter for controller
-    public void setImagesViewController(ImagesViewController imagesViewController) {
-        this.imagesViewController = imagesViewController;
-    }
 
     @FXML
     private Label blueLbl;
@@ -78,6 +75,15 @@ public class SlideshowViewController implements Initializable {
 
     @FXML
     private Button rightSkipBtn;
+
+    // Setter for controller
+    public void setImagesViewController(ImagesViewController imagesViewController) {
+        this.imagesViewController = imagesViewController;
+    }
+
+    public void setPlaylistViewController(PlaylistViewController playlistViewController){
+        this.playlistViewController = playlistViewController;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -178,5 +184,28 @@ public class SlideshowViewController implements Initializable {
     }
 
     public void onClickLoadImagesBtn(ActionEvent event) {
+    }
+
+    public void onClickMenuPlaylists(ActionEvent event) throws IOException {
+        // Get the current stage
+        Stage currentStage = (Stage) slideshowBorderPane.getScene().getWindow();
+        // Get its dimensions
+        double width = currentStage.getWidth();
+        double height = currentStage.getHeight();
+
+        // Close the current stage
+        currentStage.close();
+
+        // Load the new scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PlaylistView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, width, height)); // Set width and height for the new stage
+        stage.setTitle("Image Viewer");
+        stage.show();
+
+        PlaylistViewController playlistViewController = loader.getController();
+        // Pass the reference to the slideshow controller to allow communication between controllers
+        playlistViewController.setSlideshowViewController(this);
     }
 }

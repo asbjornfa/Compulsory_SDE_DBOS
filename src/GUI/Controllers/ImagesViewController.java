@@ -32,6 +32,7 @@ public class ImagesViewController implements Initializable {
     public TableColumn colFileName;
     @FXML
     public TableColumn colFileFormat;
+    public MenuItem menuPlaylists;
 
 
     @FXML
@@ -57,12 +58,17 @@ public class ImagesViewController implements Initializable {
 
     private AddFilesViewController addFilesViewController;
     private SlideshowViewController slideshowViewController;
+    private PlaylistViewController playlistViewController;
     private ImageModel imageModel;
 
 
     // Setter for controller
     public void setSlideshowViewController(SlideshowViewController slideshowViewController) {
         this.slideshowViewController = slideshowViewController;
+    }
+
+    public void setPlaylistViewController(PlaylistViewController playlistViewController){
+        this.playlistViewController = playlistViewController;
     }
 
     public ImagesViewController() {
@@ -182,4 +188,27 @@ public class ImagesViewController implements Initializable {
                 ((Stage) loadImagesBtn.getScene().getWindow()).close();
             }
         }
+
+    public void onClickMenuPlaylists(ActionEvent event) throws IOException {
+        // Get the current stage
+        Stage currentStage = (Stage) imagesBorderPane.getScene().getWindow();
+        // Get its dimensions
+        double width = currentStage.getWidth();
+        double height = currentStage.getHeight();
+
+        // Close the current stage
+        currentStage.close();
+
+        // Load the new scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PlaylistView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, width, height)); // Set width and height for the new stage
+        stage.setTitle("Image Viewer");
+        stage.show();
+
+        PlaylistViewController playlistViewController = loader.getController();
+        // Pass the reference to the slideshow controller to allow communication between controllers
+        playlistViewController.setImagesViewController(this);
     }
+}

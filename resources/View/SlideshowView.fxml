@@ -125,6 +125,8 @@
                           <MenuItem fx:id="menuSlideshow" mnemonicParsing="false" onAction="#onClickMenuSlideshow" text="Slideshow" />
                               <SeparatorMenuItem mnemonicParsing="false" />
                               <MenuItem fx:id="menuImages" mnemonicParsing="false" onAction="#onClickMenuImages" text="Images" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem fx:id="menuPlaylists" mnemonicParsing="false" onAction="#onClickMenuPlaylists" text="Playlists" />
                         </items>
                       </Menu>
                     </menus>

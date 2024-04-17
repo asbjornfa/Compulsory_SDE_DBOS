@@ -44,7 +44,6 @@ public class ImageDAO_DB implements IImages {
 
     @Override
     public Images createImage(Images images) {
-        // SQL statement to delete a movie from the CatMovie and Movie tables
         String sql =
                 "INSERT INTO dbo.Images (fileName, fileFormat, filePath) VALUES (?,?,?)";
 
@@ -56,7 +55,6 @@ public class ImageDAO_DB implements IImages {
             stmt.setString(2, images.getFileFormat());
             stmt.setString(3, images.getFilePath());
 
-            // Execute the SQL statement to delete the movie
             stmt.executeUpdate();
 
             Images createdImage = new Images(images.getFileName(), images.getFileFormat(), images.getFilePath());
