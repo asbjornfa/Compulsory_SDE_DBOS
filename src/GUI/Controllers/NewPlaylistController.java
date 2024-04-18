@@ -3,16 +3,19 @@ package GUI.Controllers;
 import BE.Playlist;
 import GUI.Model.PlaylistModel;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NewPlaylistController {
 
-
-    public TextField txtPlaylistName;
-    public Button btnSave;
-    public Button btnCancel;
+    @FXML
+    private TextField txtPlaylistName;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private Button btnCancel;
 
     private PlaylistViewController playlistViewController;
     private PlaylistModel playlistModel;
@@ -33,11 +36,8 @@ public class NewPlaylistController {
             if (playlistViewController!=null) {
                 playlistViewController.addPlaylistToTblView(playlist);
                 playlistViewController.updatePlaylistTblView();
-
             }
-
             closeStage();
-
         } else {
             System.out.println("Playlist name cannot be empty.");
         }

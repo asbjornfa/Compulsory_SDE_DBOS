@@ -17,6 +17,5 @@ public class Main extends Application {
         primaryStage.setTitle("Image viewer");
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 }

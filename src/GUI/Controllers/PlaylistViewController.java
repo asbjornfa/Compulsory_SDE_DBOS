@@ -37,26 +37,18 @@ import java.util.ResourceBundle;
 
         @FXML
         private Button addPlaylistBtn;
-
-
         @FXML
         private TableColumn colFileFormat;
-
         @FXML
         private TableColumn colFileName;
-
         @FXML
         private Button deletePlaylistBtn;
-
         @FXML
         private TableView<Images> imageTblView;
-
         @FXML
         private BorderPane playlistBorderPane;
-
         @FXML
         private MenuItem menuImages;
-
         @FXML
         private MenuItem menuSlideshow;
 
@@ -69,6 +61,10 @@ import java.util.ResourceBundle;
         private ImageModel imageModel;
         private PlaylistModel playlistModel;
 
+        public PlaylistViewController() {
+            imageModel = new ImageModel();
+            playlistModel = new PlaylistModel();
+        }
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
@@ -80,6 +76,15 @@ import java.util.ResourceBundle;
             lblPlaylistName.setText("");
         }
 
+        // Setter for controller
+        public void setSlideshowViewController(SlideshowViewController slideshowViewController) {
+            this.slideshowViewController = slideshowViewController;
+        }
+
+        // Setter for controller
+        public void setImagesViewController(ImagesViewController imagesViewController) {
+            this.imagesViewController = imagesViewController;
+        }
 
         private void handlePlaylistDoubleClick() {
             Playlist selectedPlaylist = playlistTblView.getSelectionModel().getSelectedItem();
@@ -117,21 +122,6 @@ import java.util.ResourceBundle;
 
         }
 
-        public PlaylistViewController() {
-            imageModel = new ImageModel();
-            playlistModel = new PlaylistModel();
-        }
-
-        // Setter for controller
-        public void setSlideshowViewController(SlideshowViewController slideshowViewController) {
-            this.slideshowViewController = slideshowViewController;
-        }
-
-        // Setter for controller
-        public void setImagesViewController(ImagesViewController imagesViewController) {
-            this.imagesViewController = imagesViewController;
-        }
-
         public void updatePlaylistTblView() {
             playlistTblView.refresh();
         }
@@ -152,7 +142,6 @@ import java.util.ResourceBundle;
 
             // Get the controller instance after loading the FXML
             NewPlaylistController newPlaylistController = loader.getController();
-            // Set the reference to ImagesViewController
             newPlaylistController.setPlaylistViewController(this);
             }
 
@@ -192,7 +181,6 @@ import java.util.ResourceBundle;
             stage.show();
 
             ImagesViewController imagesViewController = loader.getController();
-            // Pass the reference to the slideshow controller to allow communication between controllers
             imagesViewController.setPlaylistViewController(this);
         }
 
@@ -217,7 +205,6 @@ import java.util.ResourceBundle;
             stage.show();
 
             SlideshowViewController slideshowViewController = loader.getController();
-            // Pass the reference to the main controller to allow communication between controllers
             slideshowViewController.setPlaylistViewController(this);
         }
 

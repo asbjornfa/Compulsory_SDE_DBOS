@@ -3,6 +3,7 @@ package GUI.Controllers;
 import BE.Images;
 import GUI.Model.ImageModel;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -13,11 +14,14 @@ import java.io.File;
 
 public class AddFilesViewController {
 
-
-    public TextField txtFileName;
-    public TextField txtFileFormat;
-    public TextField txtFile;
-    public AnchorPane addFilesAnchorPane;
+    @FXML
+    private TextField txtFileName;
+    @FXML
+    private TextField txtFileFormat;
+    @FXML
+    private TextField txtFile;
+    @FXML
+    private AnchorPane addFilesAnchorPane;
 
     private ImagesViewController imagesViewController;
 
@@ -30,7 +34,6 @@ public class AddFilesViewController {
     public void setImagesViewController(ImagesViewController imagesViewController){
         this.imagesViewController = imagesViewController;
     }
-
 
     public void onActionChoose(ActionEvent event) {
         Stage stage = new Stage();
@@ -80,13 +83,10 @@ public class AddFilesViewController {
 
             imageModel.createImage(fileName, fileFormat, filePath);
 
-
             if (imagesViewController!=null) {
                 imagesViewController.addImagesToTblView(images);
                 imagesViewController.updateImageTblView();
-                
             }
-
         } else {
             // Show an alert indicating that all fields are required
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -95,11 +95,8 @@ public class AddFilesViewController {
             alert.setContentText("Please fill in all the required fields.");
             alert.showAndWait();
         }
-
         closeStage();
-
     }
-
 
     private void closeStage() {
         Stage stage = (Stage) addFilesAnchorPane.getScene().getWindow();

@@ -41,13 +41,11 @@ public class PlaylistModel {
         Playlist playlist = new Playlist(name);
 
         playlistManager.createPlaylist(playlist);
-
         playlistsToBeViewed.add(playlist);
     }
 
     public void deletePlaylist(Playlist playlist){
         playlistManager.deletePlaylist(playlist);
-
         playlistsToBeViewed.remove(playlist);
     }
 

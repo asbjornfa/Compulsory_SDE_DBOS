@@ -38,14 +38,11 @@ public class ImageModel {
         Images images = new Images(fileName,fileFormat,filePath);
 
         imageManager.createImage(images);
-
         imagesToBeViewed.add(images);
     }
 
     public void deleteImage(Images images){
         imageManager.deleteImage(images);
-
         imagesToBeViewed.remove(images);
     }
-
 }

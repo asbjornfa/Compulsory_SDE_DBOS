@@ -66,8 +66,6 @@ public class ImageDAO_DB implements IImages {
 
     }
 
-
-
         @Override
     public void deleteImage(Images images) {
 

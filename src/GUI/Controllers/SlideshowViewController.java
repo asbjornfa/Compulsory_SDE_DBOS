@@ -29,13 +29,32 @@ import java.util.TimerTask;
 
 public class SlideshowViewController implements Initializable {
 
-    public MenuItem menuPlaylists;
-    private List<Images> slideshowImages;
-    private int currentImageIndex = 0;
-    private Timer timer;
-    private boolean isPlaying = false;
-
-    public BorderPane slideshowBorderPane;
+    @FXML
+    private MenuItem menuPlaylists;
+    @FXML
+    private BorderPane slideshowBorderPane;
+    @FXML
+    private Label blueLbl;
+    @FXML
+    private Button clearBtn;
+    @FXML
+    private Label currentlyLbl;
+    @FXML
+    private Label greenLbl;
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private Button leftSkipBtn;
+    @FXML
+    private MenuItem menuImages;
+    @FXML
+    private MenuItem menuSlideshow;
+    @FXML
+    private Button playPauseBtn;
+    @FXML
+    private Label redLbl;
+    @FXML
+    private Button rightSkipBtn;
 
     private ImagesViewController imagesViewController;
     private PlaylistViewController playlistViewController;
@@ -43,38 +62,10 @@ public class SlideshowViewController implements Initializable {
     //Defines a Stage reference
     private Stage slideshowStage;
 
-    @FXML
-    private Label blueLbl;
-
-    @FXML
-    private Button clearBtn;
-
-    @FXML
-    private Label currentlyLbl;
-
-    @FXML
-    private Label greenLbl;
-
-    @FXML
-    private ImageView imageView;
-
-    @FXML
-    private Button leftSkipBtn;
-
-    @FXML
-    private MenuItem menuImages;
-
-    @FXML
-    private MenuItem menuSlideshow;
-
-    @FXML
-    private Button playPauseBtn;
-
-    @FXML
-    private Label redLbl;
-
-    @FXML
-    private Button rightSkipBtn;
+    private List<Images> slideshowImages;
+    private int currentImageIndex = 0;
+    private Timer timer;
+    private boolean isPlaying = false;
 
     // Setter for controller
     public void setImagesViewController(ImagesViewController imagesViewController) {
@@ -87,7 +78,6 @@ public class SlideshowViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         imagePlaceholder();
         currentlyLbl.setText("");
         redLbl.setText("");
@@ -200,17 +190,12 @@ public class SlideshowViewController implements Initializable {
         stage.show();
 
         ImagesViewController imagesViewController = loader.getController();
-        // Pass the reference to the slideshow controller to allow communication between controllers
         imagesViewController.setSlideshowViewController(this);
-
     }
-
 
     @FXML
     public void onClickMenuSlideshow(ActionEvent event) {
-
     }
-
 
     public void onClickLeftSkipBtn(ActionEvent event) {
         currentImageIndex = (currentImageIndex - 1 + slideshowImages.size()) % slideshowImages.size();
@@ -218,7 +203,6 @@ public class SlideshowViewController implements Initializable {
     }
 
     public void onClickPlayPauseBtn(ActionEvent event) {
-
         isPlaying = !isPlaying;
         playPauseBtn.setText(isPlaying ? "⏸" : "▶");
     }
@@ -255,7 +239,6 @@ public class SlideshowViewController implements Initializable {
         stage.show();
 
         PlaylistViewController playlistViewController = loader.getController();
-        // Pass the reference to the slideshow controller to allow communication between controllers
         playlistViewController.setSlideshowViewController(this);
     }
 }

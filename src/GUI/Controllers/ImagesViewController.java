@@ -27,32 +27,25 @@ import java.util.ResourceBundle;
 public class ImagesViewController implements Initializable {
 
     @FXML
-    public BorderPane imagesBorderPane;
+    private BorderPane imagesBorderPane;
     @FXML
-    public TableColumn colFileName;
+    private TableColumn colFileName;
     @FXML
-    public TableColumn colFileFormat;
-    public MenuItem menuPlaylists;
-
-
+    private TableColumn colFileFormat;
+    @FXML
+    private MenuItem menuPlaylists;
     @FXML
     private Button addFilesBtn;
-
     @FXML
     private Button deleteBtn;
-
     @FXML
     private ImageView imageView;
-
     @FXML
     private Button loadImagesBtn;
-
     @FXML
     private MenuItem menuImages;
-
     @FXML
     private MenuItem menuSlideshow;
-
     @FXML
     public TableView<Images> tblViewImages;
 
@@ -61,6 +54,10 @@ public class ImagesViewController implements Initializable {
     private PlaylistViewController playlistViewController;
     private ImageModel imageModel;
 
+    public ImagesViewController() {
+        imageModel = new ImageModel();
+        imageModel.setImagesViewController(this);
+    }
 
     // Setter for controller
     public void setSlideshowViewController(SlideshowViewController slideshowViewController) {
@@ -69,11 +66,6 @@ public class ImagesViewController implements Initializable {
 
     public void setPlaylistViewController(PlaylistViewController playlistViewController){
         this.playlistViewController = playlistViewController;
-    }
-
-    public ImagesViewController() {
-        imageModel = new ImageModel();
-        imageModel.setImagesViewController(this);
     }
 
     @Override
@@ -179,12 +171,11 @@ public class ImagesViewController implements Initializable {
 
                 // Get the controller and pass the selected images
                 SlideshowViewController controller = loader.getController();
-                controller.loadImages(selectedImages); // Assume this method exists in SlideshowViewController
+                controller.loadImages(selectedImages);
 
                 // Show the new window
                 stage.show();
 
-                // Optionally, close the current window if you want
                 ((Stage) loadImagesBtn.getScene().getWindow()).close();
             }
         }
@@ -208,7 +199,6 @@ public class ImagesViewController implements Initializable {
         stage.show();
 
         PlaylistViewController playlistViewController = loader.getController();
-        // Pass the reference to the slideshow controller to allow communication between controllers
         playlistViewController.setImagesViewController(this);
     }
 }
