@@ -1,0 +1,29 @@
+#imagesBorderPane,
+#slideshowBorderPane,
+#playlistBorderPane {
+    -fx-background-color:  #1D1D1D;
+}
+
+.menu-bar{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+.button{
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+}
+
+#addFilesBtn, #addPlaylistBtn, #loadPlaylistToSlideshowBtn, #loadImagesBtn, #addImageToPlaylist{
+   -fx-background-color: #4E9848;
+}
+
+#clearBtn, #deleteBtn, #deleteImageFromPlaylistBtn, #deletePlaylistBtn {
+  -fx-background-color: #B32626;
+}
+
+#leftSkipBtn, #rightSkipBtn, #playPauseBtn{
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-background-radius: 50px;
+}

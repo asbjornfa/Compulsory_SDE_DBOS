@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="slideshowBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1D1D1D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.SlideshowViewController">
+<BorderPane fx:id="slideshowBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Css/MyCss.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.SlideshowViewController">
    <bottom>
       <AnchorPane prefHeight="174.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -65,7 +65,7 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="84.0" prefWidth="333.0">
                      <children>
-                        <Button fx:id="leftSkipBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onClickLeftSkipBtn" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: White; -fx-background-radius: 50px;" text="←">
+                        <Button fx:id="leftSkipBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onClickLeftSkipBtn" prefHeight="50.0" prefWidth="50.0" text="←">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -73,7 +73,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="playPauseBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onClickPlayPauseBtn" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: White; -fx-background-radius: 50px;" text="▶">
+                        <Button fx:id="playPauseBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onClickPlayPauseBtn" prefHeight="80.0" prefWidth="80.0" text="▶">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -81,7 +81,7 @@
                               <Font size="37.0" />
                            </font>
                         </Button>
-                        <Button fx:id="rightSkipBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onClickRightSkipBtn" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-background-radius: 50px;" text="→">
+                        <Button fx:id="rightSkipBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onClickRightSkipBtn" prefHeight="50.0" prefWidth="50.0" text="→">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -93,7 +93,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="84.0" prefWidth="263.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#onClickClearBtn" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Clear" textFill="WHITE">
+                        <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#onClickClearBtn" prefHeight="35.0" prefWidth="80.0" text="Clear" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -113,7 +113,7 @@
          <children>
             <HBox alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="34.0" prefWidth="132.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <MenuBar style="-fx-background-color: white; -fx-background-radius: 10px;">
+                  <MenuBar>
                     <menus>
                       <Menu mnemonicParsing="false" text="Menu  ▼">
                         <items>

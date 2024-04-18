@@ -14,19 +14,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="playlistBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1D1D1D;" stylesheets="@../Css/MyCss.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.PlaylistViewController">
+<BorderPane fx:id="playlistBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Css/MyCss.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.PlaylistViewController">
     <bottom>
         <AnchorPane prefHeight="110.0" prefWidth="800.0">
             <children>
                 <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="20.0" prefHeight="65.0" prefWidth="397.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="loadPlaylistToSlideshowBtn" mnemonicParsing="false" onAction="#onClickLoadPlaylistToSlideshowBtn" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Load playlist to slideshow" textFill="WHITE">
+                  <Button fx:id="loadPlaylistToSlideshowBtn" mnemonicParsing="false" onAction="#onClickLoadPlaylistToSlideshowBtn" prefHeight="35.0" prefWidth="170.0" text="Load playlist to slideshow" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="addPlaylistBtn" mnemonicParsing="false" onAction="#onClickAddPlaylistBtn" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="New playlist" textFill="WHITE" />
-                  <Button fx:id="deletePlaylistBtn" mnemonicParsing="false" onAction="#onClickDeletePlaylistBtn" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Delete playlist" textFill="WHITE">
+                  <Button fx:id="addPlaylistBtn" mnemonicParsing="false" onAction="#onClickAddPlaylistBtn" prefHeight="35.0" prefWidth="100.0" text="New playlist" textFill="WHITE" />
+                  <Button fx:id="deletePlaylistBtn" mnemonicParsing="false" onAction="#onClickDeletePlaylistBtn" prefHeight="35.0" prefWidth="100.0" text="Delete playlist" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -35,12 +35,12 @@
                 </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="506.0" layoutY="20.0" prefHeight="65.0" prefWidth="287.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="addImageToPlaylist" mnemonicParsing="false" onAction="#onClickAddImageToPlaylist" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #4E9848; -fx-background-radius: 10px;" text="Add to playlist" textFill="WHITE">
+                  <Button fx:id="addImageToPlaylist" mnemonicParsing="false" onAction="#onClickAddImageToPlaylist" prefHeight="35.0" prefWidth="100.0" text="Add to playlist" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="deleteImageFromPlaylistBtn" mnemonicParsing="false" onAction="#onClickDeleteImageFromPlaylistBtn" prefHeight="35.0" prefWidth="168.0" style="-fx-background-color: #B32626; -fx-background-radius: 10px;" text="Delete image from playlist" textFill="WHITE" />
+                  <Button fx:id="deleteImageFromPlaylistBtn" mnemonicParsing="false" onAction="#onClickDeleteImageFromPlaylistBtn" prefHeight="35.0" prefWidth="168.0" text="Delete image from playlist" textFill="WHITE" />
                </children>
             </HBox>
             </children>
@@ -80,7 +80,7 @@
             <children>
                 <HBox alignment="CENTER" layoutY="-6.0" prefHeight="34.0" prefWidth="132.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                     <children>
-                        <MenuBar style="-fx-background-color: White; -fx-background-radius: 10px;">
+                        <MenuBar>
                             <menus>
                                 <Menu mnemonicParsing="false" text="Menu ▼">
                                     <items>
