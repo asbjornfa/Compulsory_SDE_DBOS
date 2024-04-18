@@ -152,18 +152,15 @@ public class SlideshowViewController implements Initializable {
                         }
                     }
                 }
-
                 // Update the UI with pixel count labels on the JavaFX application thread
                 Platform.runLater(() -> {
                     redLbl.setText("Red Pixels: " + redCount[0]);
                     greenLbl.setText("Green Pixels: " + greenCount[0]);
                     blueLbl.setText("Blue Pixels: " + blueCount[0]);
                 });
-
                 return null; // Return null since this Task doesn't return any value
             }
         };
-
         // Start the Task in a new thread
         new Thread(countTask).start();
     }
@@ -248,8 +245,11 @@ public class SlideshowViewController implements Initializable {
         showCurrentImage();
     }
 
+    @FXML
     public void onClickPlayPauseBtn(ActionEvent event) {
+        // Toggle between play and pause mode
         isPlaying = !isPlaying;
+        // Update the button text based on the current mode
         playPauseBtn.setText(isPlaying ? "⏸" : "▶");
     }
 
